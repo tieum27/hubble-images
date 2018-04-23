@@ -22,13 +22,14 @@ class App extends Component {
     }).then((parsedResponse) => {
 
       // when this promise resolves, we can work with our data
-      let hubbleData = this.state.rawData
+      let hubbleData = parsedResponse
       let newId = []
       let newImage = []
 
       hubbleData.map((imageId)=>{
         newId.push({
           id: imageId.id,
+          collection: imageId.collection
         })
       })
 
