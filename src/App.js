@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      apiUrl: "http://hubblesite.org/api/v3/images",
+      apiUrl: "hubblesite.org/api/v3/images",
       image_apiURL: "hubblesite.org/api/v3/image",
       rawData: sampleImages,
       idImages: [],
