@@ -19,13 +19,12 @@ class App extends Component {
     let json = fetch(`${this.state.apiUrl}`)
 
     json.then((response) => {
-      console.log("response Text", response.text())
+      return response.text()
     })
     .then((array) => {
       console.log("Array", array);
     })
 
-    debugger
       // when this promise resolves, we can work with our data
       // let hubbleData = json
       // let newId = []
