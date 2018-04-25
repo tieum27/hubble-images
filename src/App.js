@@ -7,8 +7,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      apiUrl: "hubblesite.org/api/v3/images",
-      image_apiURL: "http://hubblesite.org/api/v3/image",
+      apiUrl: "http://hubblesite.org/api/v3/images",
+      image_apiURL: "hubblesite.org/api/v3/image",
       rawData: sampleImages,
       idImages: [],
       images: [],
@@ -16,33 +16,32 @@ class App extends Component {
     }
   }
   componentWillMount(){
-    fetch(`${this.state.apiUrl}`).then((rawResponse)=>{
-      // rawResponse.json() returns a promise that we pass along
-      return rawResponse.json()
-    }).then((parsedResponse) => {
+    let json = fetch(`${this.state.apiUrl}`)
 
-      // when this promise resolves, we can work with our data
-      let hubbleData = parsedResponse
-      let newId = []
-      let newImage = []
-
-      hubbleData.map((imageId)=>{
-        newId.push({
-          id: imageId.id,
-          collection: imageId.collection
-        })
-      })
-
-      //  state is updated when promises are resolved
-      this.setState({idImages: newId})
-    // })
-      // this.state.idImages.map((id)=>{
-      //   newImage.push(
-      //  apiCall = newId.map((id)=> {return apiURL + id.id })
-      //   )
+    json.then((response) => {
+      console.log("response Text", response.text())
+    })
+    .then((array) => {
+      console.log("Array", array);
     })
 
-  }
+    debugger
+      // when this promise resolves, we can work with our data
+      // let hubbleData = json
+      // let newId = []
+      // let newImage = []
+
+      // hubbleData.forEach((imageId)=>{
+      //   newId.push({
+      //     id: imageId.id,
+      //     collection: imageId.collection
+      //   })
+      // })
+
+
+  };
+
+
   render() {
     return (
       <div className="App">
@@ -59,7 +58,6 @@ class App extends Component {
               <tr>
                 <th>Name</th>
                 <th>Collection</th>
-                <th>Picture</th>
               </tr>
             </thead>
             <tbody>
