@@ -19,23 +19,28 @@ class App extends Component {
     let json = fetch(`${this.state.apiUrl}`)
 
     json.then((response) => {
-      return response.text()
+      return response.json()
     })
-    .then((array) => {
-      console.log("Array", array);
+    .then((json) => {
+      let imagesArray = json
+      let newIds = []
+
+      imagesArray.forEach((imageId)=>{
+        newIds.push({
+          id: imageId.id,
+          name: imageId.name,
+          collection: imageId.collection
+        })
+      })
+
+      this.setState({idImages: newIds})
+
     })
 
       // when this promise resolves, we can work with our data
       // let hubbleData = json
-      // let newId = []
       // let newImage = []
 
-      // hubbleData.forEach((imageId)=>{
-      //   newId.push({
-      //     id: imageId.id,
-      //     collection: imageId.collection
-      //   })
-      // })
 
 
   };
